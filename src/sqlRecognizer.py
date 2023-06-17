@@ -21,9 +21,12 @@
 # COLLUMN_VALUE -> '(' VALUE ')' ',' COLLUMN_VALUE | '(' VALUE ')'
 # VALUE -> '<valor>' ',' VALUE | '<valor>'
 
-import parser
+from sqlParser import SQLParser
 
-sql = 'CREATE TABLE <id> ( <id> <tipo> , <id> <tipo> ) ;'
+sql = 'CREATE TABLE <id> (<id> <tipo>, <id> <tipo>);'
 
 if __name__ == '__main__':
-  parser.parser['initial'](sql)
+  # sqlParser.parser['initial'](sql)
+
+  parser = SQLParser(sql)
+  print(parser.S())
