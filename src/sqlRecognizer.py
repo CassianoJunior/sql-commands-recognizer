@@ -1,4 +1,4 @@
-# grammar: S -> SQL_CMD S | SQL_CMD
+# grammar: S -> SQL_CMD S | ε
 # SQL_CMD -> CREATE_STMT
 #       |  USE_STMT
 #       |  INSERT_STMT
@@ -6,27 +6,32 @@
 #       |  UPDATE_STMT
 #       |  DELETE_STMT
 #       |  TRUNCATE_STMT
-# CREATE_STMT -> 'CREATE' 'DATABASE' '<id>' ';' | 'CREATE' 'TABLE' '<id>' '(' COLLUMN ')' ';'
-# USE_STMT -> 'USE' '<id>' ';'
-# INSERT_STMT -> 'INSERT' 'INTO' '<id>' '(' COLLUMN_NAME ')' 'VALUES' COLLUMN_VALUES ;
-# SELECT_STMT -> 'SELECT' '*' 'FROM' '<id>' ';'
-#          |    'SELECT' '(' COLLUMN_NAME ')' 'FROM' '<id>' ';'
-#          |    'SELECT' '*' 'FROM' '<id>' 'ORDER' 'BY' '<id>' ';'
-#          |    'SELECT' '*' 'FROM' '<id>' 'WHERE' '<id>' '=' '<valor>' ';'
-# UPDATE_STMT -> 'UPDATE' '<id>' 'SET' '<id>' '=' '<valor>' 'WHERE' '<id>' '=' '<valor>' ';'
-# DELETE_STMT -> 'DELETE' 'FROM' '<id>' 'WHERE' '<id>' '=' '<valor>' ';'
-# TRUNCATE_STMT -> 'TRUNCATE' 'TABLE' '<id>' ';'
-# COLLUMN -> '<id>' '<tipo>' ',' COLLUMN | '<id>' '<tipo>'
-# COLLUMN_NAME -> '<id>' ',' COLLUMN_NAME | '<id>'
-# COLLUMN_VALUE -> '(' VALUE ')' ',' COLLUMN_VALUE | '(' VALUE ')'
-# VALUE -> '<valor>' ',' VALUE | '<valor>'
+# CREATE_STMT -> 'CREATE' 'DATABASE' ID ';' | 'CREATE' 'TABLE' ID '(' COLLUMN ')' ';'
+# USE_STMT -> 'USE' ID ';'
+# INSERT_STMT -> 'INSERT' 'INTO' ID '(' COLLUMN_NAME ')' 'VALUES' COLLUMN_VALUE ';'
+# SELECT_STMT -> 'SELECT' '*' 'FROM' ID ';'
+#          |    'SELECT' COLLUMN_NAME 'FROM' ID ';'
+#          |    'SELECT' '*' 'FROM' ID 'ORDER' 'BY' ID ';'
+#          |    'SELECT' '*' 'FROM' ID 'WHERE' ID '=' VALUES ';'
+# UPDATE_STMT -> 'UPDATE' ID 'SET' ID '=' VALUES 'WHERE' ID '=' VALUES ';'
+# DELETE_STMT -> 'DELETE' 'FROM' ID 'WHERE' ID '=' VALUES ';'
+# TRUNCATE_STMT -> 'TRUNCATE' 'TABLE' ID ';'
+# COLLUMN -> ID TIPO ',' COLLUMN | ID TIPO
+# COLLUMN_NAME -> ID ',' COLLUMN_NAME | ID
+# COLLUMN_VALUE -> '(' VALUES ')' ',' COLLUMN_VALUE | '(' VALUES ')'
+# VALUES -> ((STRING | NUM) ',' VALUES) | STRING | NUM
+# ID -> [a-zA-Z]+
+# TIPO -> 'string' | 'int' | 'float' | 'bool'
+# STRING -> '"' [a-zA-Z]+ '"'
+# NUM -> [0-9]+('.' [0-9]+)*
 
 from sqlParser import SQLParser
 
 sql = 'CREATE TABLE users (name string, age int);'
 
+sql2 = 'CREATE DATABASE Alunos;'
+
 if __name__ == '__main__':
-  # sqlParser.parser['initial'](sql)
 
   parser = SQLParser(sql)
-  print(parser.S())
+  parser.S()
