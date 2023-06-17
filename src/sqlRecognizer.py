@@ -23,7 +23,7 @@
 
 from sqlParser import SQLParser
 
-sql = 'CREATE TABLE <id> (<id> <tipo>, <id> <tipo>);'
+sql = 'CREATE TABLE users (name string, age int);'
 
 if __name__ == '__main__':
   # sqlParser.parser['initial'](sql)

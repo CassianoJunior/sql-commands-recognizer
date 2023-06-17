@@ -1,3 +1,5 @@
+from utils.regex import isRecognized, tokenTypeIs
+
 class SQLParser:
   def __init__(self, command: str):
     command = command.replace('(', ' ( ')
@@ -5,7 +7,7 @@ class SQLParser:
     command = command.replace(',', ' , ')
     command = command.replace(';', ' ; ')
     self.tokens = command.split()
-    self.current = None
+    self.current = ''
 
   def __setCurrent(self, token):
     self.current = token
@@ -13,8 +15,9 @@ class SQLParser:
   def getNextToken(self):
     try:
       token = self.tokens.pop(0)
-      self.__setCurrent(token)
-      return token
+      if isRecognized(token):
+        self.__setCurrent(token)
+        return token
     except IndexError:
       return print('final da string alcançado')
 
@@ -38,13 +41,13 @@ class SQLParser:
     self.getNextToken()
     if self.current == 'DATABASE':
       self.getNextToken()
-      if self.current == '<id>':
+      if tokenTypeIs['ID'](self.current):
         self.getNextToken()
         if self.current == ';':
           return True
     elif self.current == 'TABLE':
       self.getNextToken()
-      if self.current == '<id>':
+      if tokenTypeIs['ID'](self.current):
         self.getNextToken()
         if self.current == '(':
           if self.COLUMN():
@@ -53,13 +56,11 @@ class SQLParser:
               if self.current == ';':
                 return True
 
-
-
   def COLUMN(self):
     self.getNextToken()
-    if self.current == '<id>':
+    if tokenTypeIs['ID'](self.current):
       self.getNextToken()
-      if self.current == '<tipo>':
+      if tokenTypeIs['TYPE'](self.current):
         self.getNextToken()
         if self.current == ',':
           if self.COLUMN():
