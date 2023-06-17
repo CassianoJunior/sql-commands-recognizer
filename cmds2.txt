@@ -1,0 +1,11 @@
+CREATE DATABASE Escola;
+USE Escola;
+CREATE TABLE Alunos (nome string, idade int, CPF int);
+INSERT INTO Alunos (nome, idade, CPF) VALUES ("Jose", 30, 08372487328);
+SELECT * FROM Alunos;
+SELECT nome, CPF FROM Alunos;
+SELECT * FROM Alunos ORDER BY idade;
+SELECT * FROM ALunos WHERE idade = 25;
+UPDATE Alunos SET nome = "joao" WHERE nome = "jose";
+DELETE FROM Alunos WHERE nome = "joao";
+TRUNCATE TABLE Alunos;
