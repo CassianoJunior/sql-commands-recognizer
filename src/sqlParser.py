@@ -134,7 +134,7 @@ class SQLParser:
             self.getNextToken()
             if tokenTypeIs['ID'](self.current):
               self.getNextToken()
-              if self.current == '=':
+              if tokenTypeIs['OPERATOR'](self.current):
                 self.getNextToken()
                 if tokenTypeIs['VALUE'](self.current):
                   self.getNextToken()
@@ -151,7 +151,7 @@ class SQLParser:
         self.getNextToken()
         if tokenTypeIs['ID'](self.current):
           self.getNextToken()
-          if self.current == '=':
+          if tokenTypeIs['OPERATOR'](self.current):
             self.getNextToken()
             if tokenTypeIs['VALUE'](self.current):
               self.getNextToken()
@@ -159,7 +159,7 @@ class SQLParser:
                 self.getNextToken()
                 if tokenTypeIs['ID'](self.current):
                   self.getNextToken()
-                  if self.current == '=':
+                  if tokenTypeIs['OPERATOR'](self.current):
                     self.getNextToken()
                     if tokenTypeIs['VALUE'](self.current):
                       self.getNextToken()
@@ -176,7 +176,7 @@ class SQLParser:
           self.getNextToken()
           if tokenTypeIs['ID'](self.current):
             self.getNextToken()
-            if self.current == '=':
+            if tokenTypeIs['OPERATOR'](self.current):
               self.getNextToken()
               if tokenTypeIs['VALUE'](self.current):
                 self.getNextToken()

@@ -12,9 +12,9 @@
 # SELECT_STMT -> 'SELECT' '*' 'FROM' ID ';'
 #          |    'SELECT' COLLUMN_NAME 'FROM' ID ';'
 #          |    'SELECT' '*' 'FROM' ID 'ORDER' 'BY' ID ';'
-#          |    'SELECT' '*' 'FROM' ID 'WHERE' ID '=' VALUES ';'
-# UPDATE_STMT -> 'UPDATE' ID 'SET' ID '=' VALUES 'WHERE' ID '=' VALUES ';'
-# DELETE_STMT -> 'DELETE' 'FROM' ID 'WHERE' ID '=' VALUES ';'
+#          |    'SELECT' '*' 'FROM' ID 'WHERE' ID OPERATOR VALUES ';'
+# UPDATE_STMT -> 'UPDATE' ID 'SET' ID OPERATOR VALUES 'WHERE' ID OPERATOR VALUES ';'
+# DELETE_STMT -> 'DELETE' 'FROM' ID 'WHERE' ID OPERATOR VALUES ';'
 # TRUNCATE_STMT -> 'TRUNCATE' 'TABLE' ID ';'
 # COLLUMN -> ID TIPO ',' COLLUMN | ID TIPO
 # COLLUMN_NAME -> ID ',' COLLUMN_NAME | ID
@@ -24,6 +24,7 @@
 # TIPO -> 'string' | 'int' | 'float' | 'boolean' | 'date' | 'datetime'
 # STRING -> '"' [a-zA-Z0-9]+ '"' | ''' [a-zA-Z0-9]+ '''
 # NUM -> [0-9]+('.' [0-9]+)?
+# OPERATOR -> '<=' | '>=' | '<' | '>' | '=' | '!=' | '<>'
 
 from sqlParser import SQLParser
 import time
@@ -38,6 +39,7 @@ if __name__ == '__main__':
       opcao = int(input('\nEscolha uma opção: '))
     except ValueError:
       print('Digite uma opção válido')
+      time.sleep(2)
       continue
     if opcao == 1:
       sql = input('Informe comando SQL a ser reconhecido: ')

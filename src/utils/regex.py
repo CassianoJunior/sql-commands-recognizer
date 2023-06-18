@@ -103,4 +103,5 @@ tokenTypeIs = {
   'TYPE': isType,
   'VALUE': isValue,
   'WS': isWhitespace,
+  'OPERATOR': isOperator,
 }
