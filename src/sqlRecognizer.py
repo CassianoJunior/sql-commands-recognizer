@@ -20,18 +20,30 @@
 # COLLUMN_NAME -> ID ',' COLLUMN_NAME | ID
 # COLLUMN_VALUE -> '(' VALUES ')' ',' COLLUMN_VALUE | '(' VALUES ')'
 # VALUES -> ((STRING | NUM) ',' VALUES) | STRING | NUM
-# ID -> [a-zA-Z]+
-# TIPO -> 'string' | 'int' | 'float' | 'bool'
-# STRING -> '"' [a-zA-Z]+ '"'
-# NUM -> [0-9]+('.' [0-9]+)*
+# ID -> [a-zA-Z]+[a-zA-Z0-9]*
+# TIPO -> 'string' | 'int' | 'float' | 'boolean' | 'date' | 'datetime'
+# STRING -> '"' [a-zA-Z0-9]+ '"' | ''' [a-zA-Z0-9]+ '''
+# NUM -> [0-9]+('.' [0-9]+)?
 
 from sqlParser import SQLParser
-
-sql = 'INSERT INTO Alunos (nome, idade, CPF) VALUES ("Jose", 30, 08372487328);'
-
-#sql2 = open('cmds2.txt', 'r')
+import time
 
 if __name__ == '__main__':
-
-  parser = SQLParser(sql)
-  parser.S()
+  while True:
+    print('\nPARSER DESCENDENTE RECURSIVO PREDITIVO\n')
+    print('1 - Informar comando SQL a ser reconhecido')
+    print('2 - Ler Arquivo texto com comandos SQL')
+    print('0 - Encerrar aplicação')
+    opcao = int(input('\nEscolha uma opção: '))
+    if opcao == 1:
+      sql = input('Informe comando SQL a ser reconhecido: ')
+      parser = SQLParser(sql)
+      parser.S()
+      time.sleep(2)
+    elif opcao == 2:
+      sql = open(input('Informe o nome do arquivo texto com os comandos SQL(deve estar dentro da pasta do projeto): '), 'r').read()
+      parser = SQLParser(sql)
+      parser.S()
+      time.sleep(2)
+    else:
+      break

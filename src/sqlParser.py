@@ -25,14 +25,18 @@ class SQLParser:
 
 
   def S(self):
+    RED = '\033[91m'
+    GREEN = '\033[92m'
+    CIAN = '\033[96m'
+    RESET = '\033[0m'
     if self.SQL_CMD():
-      print('Comando SQL reconhecido com sucesso!!')
+      print(GREEN + 'Comando SQL reconhecido com sucesso!!' + RESET)
       self.S()
     else:
       if self.end:
-        print('Final da String alcançado')
+        print(CIAN + 'Final da String alcançado' + RESET)
       else:
-        print('Comando sql não reconhecido')
+        print(RED + 'Comando SQL não reconhecido' + RESET)
 
 
   def SQL_CMD(self):
