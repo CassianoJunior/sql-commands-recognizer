@@ -41,9 +41,14 @@ if __name__ == '__main__':
       parser.S()
       time.sleep(2)
     elif opcao == 2:
-      sql = open(input('Informe o nome do arquivo texto com os comandos SQL(deve estar dentro da pasta do projeto): '), 'r').read()
-      parser = SQLParser(sql)
-      parser.S()
-      time.sleep(2)
+      try:
+        sql = open(input('Informe o nome do arquivo texto com os comandos SQL(deve estar dentro da pasta do projeto): '), 'r').read()
+        parser = SQLParser(sql)
+        parser.S()
+        time.sleep(2)
+      except FileNotFoundError:
+        print('Nome incorreto ou arquivo não existe')
+        time.sleep(2)
+        continue
     else:
       break
