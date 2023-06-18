@@ -20,9 +20,9 @@
 # COLUMN_NAME -> ID ',' COLUMN_NAME | ID
 # COLUMN_VALUE -> '(' VALUES ')' ',' COLUMN_VALUE | '(' VALUES ')'
 # VALUES -> ((STRING | NUM) ',' VALUES) | STRING | NUM
-# ID -> [a-zA-Z]+[a-zA-Z0-9]*
+# ID -> [a-zA-Z_]+[a-zA-Z0-9_]*
 # TIPO -> 'string' | 'int' | 'float' | 'boolean' | 'date' | 'datetime'
-# STRING -> '"' [a-zA-Z0-9]+ '"' | ''' [a-zA-Z0-9]+ '''
+# STRING -> '"' [a-zA-Z0-9_ ]+ '"' | ''' [a-zA-Z0-9_ ]+ '''
 # NUM -> [0-9]+('.' [0-9]+)?
 # OPERATOR -> '<=' | '>=' | '<' | '>' | '=' | '!=' | '<>'
 
