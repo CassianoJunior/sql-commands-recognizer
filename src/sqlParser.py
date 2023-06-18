@@ -98,16 +98,16 @@ class SQLParser:
       if tokenTypeIs['ID'](self.current):
         self.getNextToken()
         if self.current == '(':
-          if self.COLLUMN_NAME():
+          if self.COLUMN_NAME():
             if self.current == ')':
               self.getNextToken()
               if self.current == 'VALUES':
-                if self.COLLUMN_VALUE():
+                if self.COLUMN_VALUE():
                   if self.current == ';':
                     return True
 
   def SELECT_STMT(self):
-    if self.COLLUMN_NAME():
+    if self.COLUMN_NAME():
       if self.current == 'FROM':
         self.getNextToken()
         if tokenTypeIs['ID'](self.current):
@@ -206,26 +206,26 @@ class SQLParser:
 
       return False
 
-  def COLLUMN_NAME(self):
+  def COLUMN_NAME(self):
     self.getNextToken()
     if tokenTypeIs['ID'](self.current):
       self.getNextToken()
       if self.current == ',':
-        if self.COLLUMN_NAME():
+        if self.COLUMN_NAME():
           return True
 
       return True
 
     return False
 
-  def COLLUMN_VALUE(self):
+  def COLUMN_VALUE(self):
     self.getNextToken()
     if self.current == '(':
       if self.VALUES():
         if self.current == ')':
           self.getNextToken()
           if self.current == ',':
-            if self.COLLUMN_VALUE():
+            if self.COLUMN_VALUE():
               return True
 
             return False

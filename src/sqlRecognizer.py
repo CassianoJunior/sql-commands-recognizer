@@ -6,19 +6,19 @@
 #       |  UPDATE_STMT
 #       |  DELETE_STMT
 #       |  TRUNCATE_STMT
-# CREATE_STMT -> 'CREATE' 'DATABASE' ID ';' | 'CREATE' 'TABLE' ID '(' COLLUMN ')' ';'
+# CREATE_STMT -> 'CREATE' 'DATABASE' ID ';' | 'CREATE' 'TABLE' ID '(' COLUMN ')' ';'
 # USE_STMT -> 'USE' ID ';'
-# INSERT_STMT -> 'INSERT' 'INTO' ID '(' COLLUMN_NAME ')' 'VALUES' COLLUMN_VALUE ';'
+# INSERT_STMT -> 'INSERT' 'INTO' ID '(' COLUMN_NAME ')' 'VALUES' COLUMN_VALUE ';'
 # SELECT_STMT -> 'SELECT' '*' 'FROM' ID ';'
-#          |    'SELECT' COLLUMN_NAME 'FROM' ID ';'
+#          |    'SELECT' COLUMN_NAME 'FROM' ID ';'
 #          |    'SELECT' '*' 'FROM' ID 'ORDER' 'BY' ID ';'
 #          |    'SELECT' '*' 'FROM' ID 'WHERE' ID OPERATOR VALUES ';'
 # UPDATE_STMT -> 'UPDATE' ID 'SET' ID OPERATOR VALUES 'WHERE' ID OPERATOR VALUES ';'
 # DELETE_STMT -> 'DELETE' 'FROM' ID 'WHERE' ID OPERATOR VALUES ';'
 # TRUNCATE_STMT -> 'TRUNCATE' 'TABLE' ID ';'
-# COLLUMN -> ID TIPO ',' COLLUMN | ID TIPO
-# COLLUMN_NAME -> ID ',' COLLUMN_NAME | ID
-# COLLUMN_VALUE -> '(' VALUES ')' ',' COLLUMN_VALUE | '(' VALUES ')'
+# COLUMN -> ID TIPO ',' COLUMN | ID TIPO
+# COLUMN_NAME -> ID ',' COLUMN_NAME | ID
+# COLUMN_VALUE -> '(' VALUES ')' ',' COLUMN_VALUE | '(' VALUES ')'
 # VALUES -> ((STRING | NUM) ',' VALUES) | STRING | NUM
 # ID -> [a-zA-Z]+[a-zA-Z0-9]*
 # TIPO -> 'string' | 'int' | 'float' | 'boolean' | 'date' | 'datetime'
