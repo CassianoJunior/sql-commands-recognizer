@@ -30,6 +30,9 @@ TYPE = r'int|float|string|boolean|date|datetime'
 # Regex for matching values
 VALUE = rf'{NUMBER}|{STRING}'
 
+# Regex for matching operators
+OPERATOR = r'<=|>=|<|>|=|!=|<>'
+
 # Regex for matching some of expected commands
 
 reservedWords = [
@@ -56,9 +59,6 @@ specialChars = [
   ',',
   '(',
   ')',
-  '=',
-  '<',
-  '>',
 ]
 
 def isIdentifier(token: str):
@@ -79,8 +79,13 @@ def isReservedWord(token: str):
 def isWhitespace(token: str):
   return re.match(WS, token)
 
+def isOperator(token: str):
+  return re.match(OPERATOR, token)
+
 def isRecognized(token: str):
   if isReservedWord(token) or isSpecialChar(token):
+    return True
+  elif isOperator(token):
     return True
   elif isType(token):
     return True
