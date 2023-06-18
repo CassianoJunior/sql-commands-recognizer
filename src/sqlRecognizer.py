@@ -27,9 +27,9 @@
 
 from sqlParser import SQLParser
 
-sql = 'CREATE TABLE users (name string, age int);'
+sql = 'INSERT INTO Alunos (nome, idade, CPF) VALUES ("Jose", 30, 08372487328);'
 
-sql2 = 'CREATE DATABASE Alunos;'
+#sql2 = open('cmds2.txt', 'r')
 
 if __name__ == '__main__':
 

@@ -4,7 +4,7 @@ class SQLParser:
   def __init__(self, command: str):
     command = command.replace('(', ' ( ')
     command = command.replace(')', ' ) ')
-    command = command.replace('"', ' " ')
+    #command = command.replace('"', ' " ')
     command = command.replace(',', ' , ')
     command = command.replace(';', ' ; ')
     self.tokens = command.split()
@@ -131,7 +131,9 @@ class SQLParser:
             if tokenTypeIs['ID'](self.current):
               self.getNextToken()
               if self.current == '=':
+                self.getNextToken()
                 if tokenTypeIs['VALUE'](self.current):
+                  self.getNextToken()
                   if self.current == ';':
                     return True
           else:
@@ -146,13 +148,17 @@ class SQLParser:
         if tokenTypeIs['ID'](self.current):
           self.getNextToken()
           if self.current == '=':
+            self.getNextToken()
             if tokenTypeIs['VALUE'](self.current):
+              self.getNextToken()
               if self.current == 'WHERE':
                 self.getNextToken()
                 if tokenTypeIs['ID'](self.current):
                   self.getNextToken()
                   if self.current == '=':
+                    self.getNextToken()
                     if tokenTypeIs['VALUE'](self.current):
+                      self.getNextToken()
                       if self.current == ';':
                         return True
 
@@ -167,7 +173,9 @@ class SQLParser:
           if tokenTypeIs['ID'](self.current):
             self.getNextToken()
             if self.current == '=':
+              self.getNextToken()
               if tokenTypeIs['VALUE'](self.current):
+                self.getNextToken()
                 if self.current == ';':
                   return True
 
@@ -209,7 +217,7 @@ class SQLParser:
   def COLLUMN_VALUE(self):
     self.getNextToken()
     if self.current == '(':
-      if tokenTypeIs['VALUE'](self.current):
+      if self.VALUES():
         if self.current == ')':
           self.getNextToken()
           if self.current == ',':
@@ -223,5 +231,19 @@ class SQLParser:
         return False
 
       return False
+
+    return False
+
+  def VALUES(self):
+    self.getNextToken()
+    if tokenTypeIs['VALUE'](self.current):
+      self.getNextToken()
+      if self.current == ',':
+        if self.VALUES():
+          return True
+
+        return False
+
+      return True
 
     return False
