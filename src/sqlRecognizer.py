@@ -34,7 +34,11 @@ if __name__ == '__main__':
     print('1 - Informar comando SQL a ser reconhecido')
     print('2 - Ler Arquivo texto com comandos SQL')
     print('0 - Encerrar aplicação')
-    opcao = int(input('\nEscolha uma opção: '))
+    try:
+      opcao = int(input('\nEscolha uma opção: '))
+    except ValueError:
+      print('Digite uma opção válido')
+      continue
     if opcao == 1:
       sql = input('Informe comando SQL a ser reconhecido: ')
       parser = SQLParser(sql)
